@@ -147,12 +147,11 @@ RoboMongo
 * https://robomongo.org/
 
 **MySQL**
-`brew install mysql`
 
+Install mysql via brew, `brew install mysql`
 To start the service use `brew services start mysql` e para conectar via console `mysql -uroot`
 
-MySQLWorkbench:
-* https://dev.mysql.com/downloads/workbench/
+Use the [MySQLWorkbench](https://dev.mysql.com/downloads/workbench/) to manage the data using GUI.
 
 
 For older versions: install `brew install mysql@5.7`, `brew postinstall mysql@5.7` and 

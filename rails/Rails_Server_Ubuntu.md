@@ -137,6 +137,7 @@ apt install python3-certbot-nginx
 
 ## MySQL
 
+Install MySQL using brew: `brew install mysql`
 
 ```sh
 echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/mysql@5.7/bin:$PATH"' >> /home/appname/.bash_profile
