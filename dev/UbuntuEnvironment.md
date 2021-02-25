@@ -95,7 +95,7 @@ Install JDK using the installer in [JDK download page](https://www.oracle.com/ja
 
 ## Databases
 
-**Postgres**
+### Postgres
 `brew install postgres`
 
 ```sh
@@ -108,7 +108,7 @@ Or, if you don't want/need a background service you can just run:
 Install [Dbvear](https://dbeaver.io/download/) to manage postgres.
 
 
-**Mongo**
+### Mongo
 
 ```sh
 brew tap mongodb/brew
@@ -127,7 +127,7 @@ MongoCompass:
 RoboMongo
 * https://robomongo.org/
 
-**MySQL**
+### MySQL
 
 Install mysql via brew, `brew install mysql`
 To start the service use `brew services start mysql` e para conectar via console `mysql -uroot`
@@ -138,6 +138,9 @@ For older versions: install `brew install mysql@5.7`, `brew postinstall mysql@5.
 `brew services start mysql@5.7`.
 If you need the paths, run `brew info mysql@5.7` to get the info.
 For config go to: `/usr/local/etc/my.cnf`
+
+
+#### Throubleshoot
 
 If you have problems with installation, password or anything else, try this process:
 ```sh
