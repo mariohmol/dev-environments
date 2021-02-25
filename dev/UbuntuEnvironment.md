@@ -35,8 +35,7 @@ Then install the ruby use:
 `rvm install 2.6.3`
 
 If you have issues installing rubies:
-* `zlib missing`: do the Xcode steps (install Command Line Tools).
-* `openssl missing`:  `brew install rbenv/tap/openssl@1.0` and `RUBY_CONFIGURE_OPTS=--with-openssl-dir=/usr/local/Cellar/openssl@1.1/1.1.1i/ rvm reinstall 2.1`
+* `openssl missing`:  `brew install rbenv/tap/openssl@1.0`
 To test use: `ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'`
 TO test zlib we can do: `ruby -e'require "zlib"'`
 
@@ -53,7 +52,7 @@ export LDFLAGS="-L/usr/local/opt/openssl@1.0/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@1.0/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.0/lib/pkgconfig"
 export optflags="-Wno-error=implicit-function-declaration"
-rvm_rubygems_version=2.7.3 rvm reinstall ruby-2.2.10 --with-openssl-dir=/usr/local/Cellar/openssl@1.0/1.0.2t --with-openssl-lib=/usr/local/Cellar/openssl@1.0/1.0.2t/lib --with-openssl-include=/usr/local/Cellar/openssl@1.0/1.0.2t/include
+rvm_rubygems_version=2.7.3 rvm reinstall ruby-2.2.10 --with-openssl-dir=/usr/local/openssl@1.0/1.0.2t --with-openssl-lib=/usr/local/openssl@1.0/1.0.2t/lib --with-openssl-include=/usr/local/openssl@1.0/1.0.2t/include
 ```
 
 
