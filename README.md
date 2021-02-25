@@ -4,6 +4,9 @@ Documentation for different development languages environments and servers.
 
 ## Servers
 
+General tips for servers:
+* [Server_CentOS.md](./server/Server_CentOS.md)
+
 Configure server based on the technology
 ### Ruby on Rails
 
@@ -21,9 +24,11 @@ Configure server based on the technology
 * [UbuntuEnvironment.md](./dev/UbuntuEnvironment.md)
 * [WinEnvironment.md](./dev/WinEnvironment.md)
 
-## Server
+## Mobile
 
-* [Server_CentOS.md](./server/Server_CentOS.md)
+* [Android.md](./mobile/Android.md)
+* [iOS.md](./mobile/iOS.md)
+* [React_Native.md](./mobile/React_Native.md)
 
 # Contribute
 
