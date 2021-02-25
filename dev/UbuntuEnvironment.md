@@ -1,6 +1,6 @@
-# Mac environment
+# Ubuntu environment
 
-A cheatsheet with step by step to configure a Mac OS from the scratch with the best tools for development. Teste on latest Big Sur Osx.
+A cheatsheet with step by step to configure a Ubuntu OS from the scratch with the best tools for development. Teste on latest 20.04 LTS.
 
 Install brew
 * https://brew.sh
@@ -42,7 +42,7 @@ TO test zlib we can do: `ruby -e'require "zlib"'`
 
 ----
 
-With the Mac BigSur, you will have issues installing old rubies.
+If you have issues installing old rubies.
 You can sintall openssl using `rvm pkg install openssl`.
 You can set the autolibs on with homebre: `rvm autolibs enable` and `rvm autolibs homebrew`
 
@@ -59,10 +59,8 @@ rvm_rubygems_version=2.7.3 rvm reinstall ruby-2.2.10 --with-openssl-dir=/usr/loc
 
 ## Flutter
 
-Use the [official docs](https://flutter.dev/docs/get-started/install/macos)or download, unzip and add in your path:
-* `wget https://storage.googleapis.com/flutter_infra/releases/stable/macos/flutter_macos_1.22.5-stable.zip`
-* `unzip flutter_macos_1.22.5-stable.zip && rm flutter_macos_1.22.5-stable.zip`
-* `nano ~/.profile`
+Use the [official docs](https://flutter.dev/docs/get-started/install/linux) or download, unzip and 
+* sudo snap install flutter --classic
 * Add: ~/projetos/flutter/bin
 * flutter doctor --android-licenses
 * flutter emulators --launch apple_ios_simulator
@@ -75,7 +73,7 @@ Install the Dart and Flutter Plugin for VSCode.
 * https://developer.android.com/studio
 * `brew install bundletool android-platform-tools`
 
-Instruction for adding into [MacOS environment](https://docs.expo.io/workflow/android-studio-emulator/).
+Instruction for adding into [Ubuntu environment](https://docs.expo.io/workflow/android-studio-emulator/).
 
 
 Add paths to profile:
@@ -92,23 +90,7 @@ echo 'export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/build-tools/28.0.3' 
 Install JSE 8 
 * https://www.oracle.com/java/technologies/javase-jre8-downloads.html
 
-Install JDK using the dmg installer in [JDK download page](https://www.oracle.com/java/technologies/javase-jdk15-downloads.html)
-
-
-## App Store
-
-* The Unarchiver
-* Xcode
-
-```sh
-sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
-sudo xcodebuild -runFirstLaunch
-sudo gem install cocoapods
-```
-
-Install the Command Lines for Xcode in [Downloads Page](https://developer.apple.com/download/more/?=xcode)
-* https://download.developer.apple.com/Developer_Tools/Command_Line_Tools_for_Xcode_12.3/Command_Line_Tools_for_Xcode_12.3.dmg
-
+Install JDK using the installer in [JDK download page](https://www.oracle.com/java/technologies/javase-jdk15-downloads.html)
 
 
 ## Databases
@@ -123,8 +105,7 @@ Or, if you don't want/need a background service you can just run:
   pg_ctl -D /usr/local/var/postgres start
 ```
 
-Install [Dbvear](https://dbeaver.io/download/) to manage postgres:
-* https://dbeaver.io/files/dbeaver-ce-latest-macos.dmg
+Install [Dbvear](https://dbeaver.io/download/) to manage postgres.
 
 
 **Mongo**
@@ -160,41 +141,39 @@ For config go to: `/usr/local/etc/my.cnf`
 
 If you have problems with installation, password or anything else, try this process:
 ```sh
+# Test mysql port
+telnet localhost 3600
+
 brew remove mysql@5.7
 brew cleanup
-rm -rf /usr/local/var/mysql
-brew install mysql@5.7
-rm -rf /usr/local/var/mysql
-mysqld --initialize
-mysql_secure_installation -uroot -p"pass_generated_before"
+
+# Use the apt install for mysql
+sudo apt install mysql-server-5.7
+sudo systemctl edit mysql
+```
+
+Add this conf to the editor, press ctrl+x and Y to save.
+```conf
+[Service]
+ExecStart=
+ExecStart=/usr/sbin/mysqld --skip-grant-tables --skip-networking
+```
+
+Run the following to apply the changes:
+```sh
+sudo systemctl daemon-reload
+sudo systemctl start mysql
+# In case you want to test to stop and start
+sudo systemctl stop mysql
 ```
 
 
-## Dev
-
-Git:
-https://www.sourcetreeapp.com/
-
-
 ## Misc
-
-Spotify: Listen to music
-* http://download.spotify.com/Spotify.dmg
 
 Gimp: Manipulate images
 * `brew install gimp`
 
 Network:
 Test ports used by services like mysql, for instance:
-* nc -v localhost 3306
-
-
-Updatedb:
-Configure the files indexing to find files easy:
-* `sudo /usr/libexec/locate.updatedb`
-
-If you want, creat a linke to use like linux `updatedb`:
-* `sudo ln -s /usr/libexec/locate.updatedb /usr/local/bin/updatedb`
-
-
+* telnet localhost 3306
 

@@ -137,8 +137,10 @@ apt install python3-certbot-nginx
 
 ## MySQL
 
-Install MySQL using brew: `brew install mysql`
+Install MySQL using brew: `brew install mysql@5.7`. If you have issues during the instalation, you can try `brew postinstall mysql`.
 
+Find the path where mysql was installed, to find out running: `ls /home/linuxbrew/.linuxbrew/opt/`
+Then run the following lines to add mysql to path, remember to add:
 ```sh
 echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/mysql@5.7/bin:$PATH"' >> /home/appname/.bash_profile
 #For compilers to find mysql@5.7 you may need to set:

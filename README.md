@@ -18,6 +18,7 @@ Configure server based on the technology
 ## Development
 
 * [MacEnvironment.md](./dev/MacEnvironment.md)
+* [UbuntuEnvironment.md](./dev/UbuntuEnvironment.md)
 * [WinEnvironment.md](./dev/WinEnvironment.md)
 
 ## Server
