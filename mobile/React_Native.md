@@ -65,6 +65,10 @@ This is a step by step comprehensive React Native Navigation v5 tutorial. In thi
 * [Passing & Getting Params to Screen](https://www.positronx.io/react-native-stack-navigator-passing-getting-params-to-screen/)
 
 
+## Utils
+
+* https://gist.github.com/sibelius/60a4e11da1f826b8d60dc3975a1ac805
+
 # Expo
 
 * Clone repo and run  `npm install`
@@ -72,3 +76,4 @@ This is a step by step comprehensive React Native Navigation v5 tutorial. In thi
 
 To update for a new SQK:
 * expo update 39.0.0
+
