@@ -52,7 +52,11 @@ to manage the data install [Robot 3T](https://robomongo.org/download).
 
 **MySQL**
 Install [mysql](https://dev.mysql.com/downloads/installer/) and 
-to manage data use [Dbeaver]
+to manage data use [Dbeaver](https://dbeaver.io/download/)
+
+**Postgres**
+Install [postgres](https://www.postgresql.org/download/windows/) and 
+to manage data use [Dbeaver](https://dbeaver.io/download/)
 # Mobile
 
 ## Android
