@@ -2,19 +2,11 @@
 
 Install node for windows from [Nodejs downloads](https://nodejs.org/en/download/).
 
-## Npm
-
-Configure the path for npm packages.
-
-Hit Windows key and search for Environment variables.
+**Configure the path for npm packages**
+Hit Windows key and search for Environment variables. After open the window, click in the button Environment Variables.
 Inside the Path variable under System variables, add a new entry with this content (without /node_modules ):
 %USERPROFILE%\AppData\Roaming\npm
-
-## Environment Variable
-
 You can open the terminal and teste your environment using `echo $PATH`. 
-To open the Env editor, Hit Windows key and search for Environment variables.
-You can edit the User or system environment variables.
 
 # SSH
 
@@ -38,10 +30,8 @@ To have access to the source files for the project you need to use [Git](https:/
 You can use Git online, creating an account on [ Gitub](http://github.com/) and/or [BitBucket](http://bitbucket.com/).
 
 Install [SourceTree](https://www.sourcetreeapp.com/) as a user interface to manage your source with git.
-
-During install he asks for an bitbucket account, you can skip if you want. 
-
-After instal, click in Remote repo, add an Account, choose Github and make the Oauth with your user.
+During install it asks for an bitbucket account, you can skip if you want. 
+After install, click in Remote repo, add an Account, choose Github and make the Oauth with your user.
 
 
 # Databases
@@ -66,11 +56,16 @@ Install [Java JDK](https://www.oracle.com/java/technologies/javase/javase-jdk8-d
 Install [android studio](https://developer.android.com/studio/#downloads) for windows.
  
 After that download the [platform-tools](https://dl.google.com/android/repository/platform-tools-latest-windows.zip)
-and unzip into `~/Documents` folder.
+and unzip into `~/Documents` folder. 
 
-Add this path to the 
+Run this in your terminal:
+sdkmanager "platform-tools" "platforms;android-28"
 
-https://techcult.com/wiki/how-to-install-adb-android-debug-bridge-on-windows-10/#Method_5_%E2%80%93_Add_ADB_to_System_Path
+For full information check this [doc](https://techcult.com/wiki/how-to-install-adb-android-debug-bridge-on-windows-10/#Method_5_%E2%80%93_Add_ADB_to_System_Path)
+
+
+Hit Windows key and search for Environment variables. After open the window, click in the button Environment Variables.
+Inside the Path variable under System variables, add a variable called `ANDROID_SDK_HOME` with value `c:\Users\<username>\.android`.
 
 ## Expo
 

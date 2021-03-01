@@ -5,7 +5,12 @@ Environment:
 export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jre/jdk/Contents/Home
 export ANDROID_SDK_ROOT=/Users/username/Library/Android/sdk
 ```
+## Run Device
 
+Open you Android mobile, go to the Settings, go to About and click 10 time on the Build version. 
+It will show a message like Developer Mode activated.
+
+Then run `npm run android`
 ## App Icons
 
 You need to replace current icons in mipmap folder named: `android/app/src/main/res/mipmap*`
