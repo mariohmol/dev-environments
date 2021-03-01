@@ -56,7 +56,14 @@ Run instructions for [Windows and macOS](https://aka.ms/ReactNative)
 
 TODO: npm i --save react-native-slider
 
-## reactNativeNavigation
+## Paper - Material Design
+
+```sh
+npm install react-native-paper
+npm install --save react-native-vector-icons
+```
+
+## Navigation
 
 This is a step by step comprehensive React Native Navigation v5 tutorial. In this tutorial, we will learn how to implement Stack Navigation in React Native app using Stack Navigator.
 

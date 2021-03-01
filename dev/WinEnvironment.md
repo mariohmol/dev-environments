@@ -1,24 +1,3 @@
-
-
-
-# Mobile
-
-## Android
-
-Install [Java JDK](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
-
-Install [android studio](https://developer.android.com/studio/#downloads) for windows.
- 
-After that download the [platform-tools](https://dl.google.com/android/repository/platform-tools-latest-windows.zip)
-and unzip into `~/Documents` folder.
-
-Add this path to the 
-
-https://techcult.com/wiki/how-to-install-adb-android-debug-bridge-on-windows-10/#Method_5_%E2%80%93_Add_ADB_to_System_Path
-
-## Expo
-
-`npm install --global expo-cli`
 # Node
 
 Install node for windows from [Nodejs downloads](https://nodejs.org/en/download/).
@@ -39,6 +18,7 @@ You can edit the User or system environment variables.
 
 # SSH
 
+Download and install [Putty](https://www.putty.org/) for ssh connections.
 
 Open the windows terminal and run: `ssh-keygen`.
 
@@ -48,4 +28,32 @@ This will give you an folder like `~/.ssh/id_rsa.pub`.
 Copy the content of this file and paste in your server or any other app.
 
 
+# Development
 
+**Git**
+To have access to the source files for the project you need to use [Git](https://en.wikipedia.org/wiki/Git).
+You can use Git online, creating an account on [ Gitub](http://github.com/) and/or [BitBucket](http://bitbucket.com/).
+
+Install [SourceTree](https://www.sourcetreeapp.com/) as a user interface to manage your source with git.
+
+
+
+# Mobile
+
+## Android
+
+Install [Java JDK](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
+
+Install [android studio](https://developer.android.com/studio/#downloads) for windows.
+ 
+After that download the [platform-tools](https://dl.google.com/android/repository/platform-tools-latest-windows.zip)
+and unzip into `~/Documents` folder.
+
+Add this path to the 
+
+https://techcult.com/wiki/how-to-install-adb-android-debug-bridge-on-windows-10/#Method_5_%E2%80%93_Add_ADB_to_System_Path
+
+## Expo
+
+If you are using the expo for react-native client 
+`npm install --global expo-cli`
