@@ -1,6 +1,7 @@
 
 # Heroku 
 
+Using Heroku VPS to host your projects.
 
 ## Postgres
 
@@ -13,6 +14,7 @@ In your connection using nodejs for example:
   }
 ```
 
-Config in the heroku environment variable:
-```
+Config in the heroku environment variable, following the [official docs](https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js):
+```conf
 PGSSLMODE=no-verify
+```

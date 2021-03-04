@@ -5,12 +5,20 @@ Environment:
 export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jre/jdk/Contents/Home
 export ANDROID_SDK_ROOT=/Users/username/Library/Android/sdk
 ```
-## Run Device
+## Run 
+### Device
 
 Open you Android mobile, go to the Settings, go to About and click 10 time on the Build version. 
 It will show a message like Developer Mode activated.
 
 Then run `npm run android`
+
+### Emulator
+
+Open Android Studio -> Configure -> AVD Manager, then you can install different Android emulators. 
+Check the [Android AVD Docs](https://developer.android.com/studio/run/managing-avds#createavd) to get more details on how to create it.
+
+
 ## App Icons
 
 You need to replace current icons in mipmap folder named: `android/app/src/main/res/mipmap*`
@@ -101,8 +109,17 @@ Open the `android/app/build.gradle` and increment the versions:
     }
 ...
 ```
-https://reactnative.dev/docs/signed-apk-android
-ls android/app/build/outputs/bundle/release/app-release.aab  
+
+Create in your package.json a task to build de release:
+```json
+ "android:release": "cd ./android && ./gradlew bundleRelease"
+```
+
+The android bundle will be generated at `android/app/build/outputs/bundle/release/app-release.aab`  
+
+Read more about [signed apk](https://reactnative.dev/docs/signed-apk-android).
+
+
 
 ## Throubleshoot
 
@@ -122,9 +139,8 @@ rm -rf android/app/src/main/res/raw*
 ```
 
 
-# React Native Android
-
-Exportar e fazer upload de uma chave de um keystore Java
-Faça o download da ferramenta Play Encrypt Private Key (PEPK). Faça o download do código-fonte
-Ative a ferramenta com o comando abaixo para exportar e criptografar sua chave privada. Substitua os argumentos e insira as senhas do keystore e da chave quando solicitado.
-
+**Error Building**
+You can fix this issue by updating this line in `android/gradle/wrapper/gradle-wrapper.properties`:
+```conf
+distributionUrl=https\://services.gradle.org/distributions/gradle-6.3-all.zip
+```

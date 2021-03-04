@@ -54,14 +54,77 @@ Run instructions for [Windows and macOS](https://aka.ms/ReactNative)
 * https://github.com/jondot/awesome-react-native
 * https://magnus-ui.com/docs/dropdown/
 
-TODO: npm i --save react-native-slider
+TODO: 
+```sh
+# Slider
+npm i --save react-native-slider
+```
 
 ## Paper - Material Design
 
 ```sh
 npm install react-native-paper
-npm install --save react-native-vector-icons
+
+# Dependencies
+npm install react-native-gesture-handler
+npm add @babel/runtime
 ```
+**[Dropdown for paper](https://github.com/srk-sharingan/sharingan-rn-modal-dropdown)**
+```sh
+npm i sharingan-rn-modal-dropdown
+```
+
+
+## Icons
+
+Using [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) to include icons in your project
+```sh
+npm install react-native-vector-icons
+```
+
+Change the file `android/app/build.gradle` and add:
+```conf
+project.ext.vectoricons = [
+    iconFontNames: [ 'MaterialIcons.ttf', 'EvilIcons.ttf' ] // Name of the font files you want to copy
+]
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+```
+
+For iOS, do this and read this [doc](https://medium.com/@vimniky/how-to-use-vector-icons-in-your-react-native-project-8212ac6a8f06):
+```sh
+# Add to Podfile and run pod update:
+pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+# Run
+cd ios
+pod install
+# Just do update if your are sure, this can break the expected pods version for your react native
+#pod update
+```
+### Internacionalization
+
+```sh
+npm i react-i18next
+npm i react-native-localize
+```
+
+An example how to use the translate:
+
+```jsx
+import { Trans, useTranslation } from "react-i18next";
+
+// Simple translate
+ const { t } = useTranslation();
+ <Text>{t('areas')}</Text>
+
+
+// Complex translate
+//Create a key in your translate
+"areas-main": "Áreas {{count}}"
+// Call your translate passing the variable
+<Trans count={count}>areas-main</Trans>
+```
+
 
 ## Navigation
 

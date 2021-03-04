@@ -33,6 +33,9 @@ Install [SourceTree](https://www.sourcetreeapp.com/) as a user interface to mana
 During install it asks for an bitbucket account, you can skip if you want. 
 After install, click in Remote repo, add an Account, choose Github and make the Oauth with your user.
 
+**Bash**
+Install [git bash](https://gitforwindows.org/) for use linux style commands on windows.
+
 
 # Databases
 
@@ -66,6 +69,26 @@ For full information check this [doc](https://techcult.com/wiki/how-to-install-a
 
 Hit Windows key and search for Environment variables. After open the window, click in the button Environment Variables.
 Inside the Path variable under System variables, add a variable called `ANDROID_SDK_HOME` with value `c:\Users\<username>\.android`.
+
+
+Create a file called `.bash_profile` inside your users folder `c:\Users\<username>\`
+```sh
+export JAVA_HOME="c:\Program Files\java\jdk-1.5.2"
+export ANDROID_SDK_HOME="c:\users\<username\.android"
+export ANDROID_SDK_ROOT="c:\Users\<username>\AppData\Local\Android\Sdk"
+export "PATH=$PATH:c:\Users\<username>\documents\platrform-tools-windows\platform-tools"
+```
+
+Android Settings -> Developers Settings -> USB depuration and activate
+
+adb devices
+
+should list
+
+### Emulators
+
+You can check the [ Android Doc]() for more info about it, but you might end to an error when trying to load an emulator.
+If you find the error `The emulator process for AVD ... was killed`, try to..
 
 ## Expo
 

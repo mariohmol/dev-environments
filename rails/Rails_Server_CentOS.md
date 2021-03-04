@@ -57,7 +57,10 @@ sudo mkdir /etc/nginx/sites-available
 sudo mkdir /etc/nginx/sites-enabled
 sudo nano /etc/nginx/nginx.conf
 # Add this line at the bottom, inside the http{}:  include /etc/nginx/sites-enabled/*;
-# To use in Nginx : passenger_ruby /home/centos/.rvm/gems/ruby-2.1.10/wrappers/ruby
+
+# To use in Nginx with passenger
+# passenger_ruby /home/centos/.rvm/gems/ruby-2.1.10/wrappers/ruby
+
 sudo service nginx restart
 ```
 

@@ -22,12 +22,19 @@ supervisorctl start
 ```
 
 **Nodejs**
-```
+```sh
 yum module install nodejs/development
 node --version
 nano /etc/supervisord.d/appname.ini
 ```
 
+**Snap**
+```sh
+yum install snapd
+systemctl enable --now snapd.socket
+snap install core; sudo snap refresh core
+```
+ 
 ## Webmin
 
 
@@ -320,6 +327,12 @@ cd /etc/nginx/conf.d/php-fpm.conf
 Remove apache to install nginx:
 `service httpd stop ; chkconfig httpd off`
 
+### Certbot
+
+```sh
+yum install python3-certbot-nginx
+```
+
 ## SSH
 
 ```sh
@@ -341,7 +354,7 @@ Install:
 `yum install certbot python-certbot-apache`
 
 Use:
-`certbot --apache``
+`certbot --apache`
 
 Check the logs at:
 `nano /var/log/letsencrypt`
