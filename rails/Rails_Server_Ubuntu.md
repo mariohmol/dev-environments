@@ -8,6 +8,9 @@ sudo nano /etc/apt/sources.list
 deb http://security.ubuntu.com/ubuntu bionic-security main
 sudo apt update
 sudo apt install g++ bison libffi-dev libgdbm-dev libncurses5-dev libsqlite3-dev libyaml-dev sqlite3 libgmp-dev libreadline-dev libssl1.0-dev libtool pkg-config zlib1g-dev build-essential ruby-dev libmysqlclient-dev libcurl4-openssl-dev python2
+
+# If you use JRuby, this will be necessary
+sudo apt install openjdk-14-jdk
 ```
 
 Ruby usually ask for libssl1.0-dev, so install it:
@@ -181,12 +184,13 @@ nano config/initializers/setup_mail.rb
 # If you use cache, refresh it when needed
 redis-cli flushall
 ```
+**Schedule/Whenever**
+To run tasks in your cron, install the whenever module: `gem install whenever:0.9.4`. To include the tasks in the cron, use `whenever --update-crontab`.
 
-**Throubleshooting**
-* https://youtu.be/ghAn4H3piaA
-* https://youtu.be/fEUcEgpmHDc
+### Throubleshooting
 
-
+**Error**: gcc: error: unrecognized command line option '-Wduplicated-cond'
+**Solution**: brew unlink gcc
 
 ## SSL
 
@@ -215,3 +219,14 @@ certbot --nginx -d *.appname.com --force-renewal
 6. When rsync is down, take of the Maintenance page and test a lot your app.
 
 Good luck!
+
+
+MIGRATE:
+* Rails 4.1 use Ruby 2.2
+* Rails 4.2 use Ruby 2.4
+
+For Rails 4.x use bundle2:
+```sh
+gem install bundler:2.0.0.pre.3
+bundle _2.0.0.pre.3_ install --full-index
+```

@@ -22,6 +22,11 @@ Copy the content of this file and paste in your server or any other app.
 
 # Development
 
+**PowerShell**
+If you have problems running scripts on powershell/vscode, you have to giver permissions for your user.
+Find powershell in windows search, right click, and open as an administrator. Then run this command:
+`Set-ExecutionPolicy RemoteSigned -Scope LocalMachine`
+
 **VSCode**
 Install the Code Editor for many languages , [VSCode](https://code.visualstudio.com/Download).
 

@@ -78,6 +78,11 @@ wget http://software.virtualmin.com/gpl/scripts/install.sh
 tail -f  /var/log/virtualmin/appname.com_access_log 
 ```
 
+### Webmail
+
+```
+virtualmin modify-web --all-domains --webmail
+```
 
 ## Mongo
 
