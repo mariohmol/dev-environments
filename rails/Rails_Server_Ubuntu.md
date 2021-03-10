@@ -221,7 +221,8 @@ certbot --nginx -d *.appname.com --force-renewal
 Good luck!
 
 
-MIGRATE:
+# MIGRATE
+
 * Rails 4.1 use Ruby 2.2
 * Rails 4.2 use Ruby 2.4
 
@@ -229,4 +230,40 @@ For Rails 4.x use bundle2:
 ```sh
 gem install bundler:2.0.0.pre.3
 bundle _2.0.0.pre.3_ install --full-index
+```
+
+## 4.2 to 5.0
+
+Following this [ Guide](https://www.fastruby.io/blog/rails/upgrades/upgrade-rails-from-4-2-to-5-0.html)
+you have to:
+
+* Ruby 2.2+
+* Create a global ActiveRecord base for all models: `application_record.rb`
+* If you get erros with belongs_to, use `belongs_to :user, optional: true`
+* tag your old migrations with `ActiveRecord::Migration[4.2]` and for new migrations use `ActiveRecord::Migration[5.0]`
+* Remove the protected_attributes from the project
+* remove the `assert_template` or add the `gem 'rails-controller-testing'`
+* change `ActionDispatch::Http::UploadedFile` to test uploads to use `Rack::Test::UploadedFile`
+
+Update bundle: `bundle _2.0.0.pre.3_ update rails`
+
+
+**RAILS UPDATE**
+Update confs: `rails app:update`
+
+He will ask you to update or not each Rails conf file.
+Accept all the changes and after use the git to show the changes.
+You have to revisit and try to accept some changes based on new Rails conf without 
+loosing your own config.
+
+**Throubleshoot**
+
+If you have erros with `nio4r`, like `nio4r error: implicit declaration of function 'rb_thread_call_without_gvl'`
+
+You can try:
+
+```sh
+gem install nio4r:1.2 -- --with-cflags="-Wno-error=implicit-function-declaration"
+
+bundle config build.nio4r -- --with-cflags="-Wno-error=implicit-function-declaration"
 ```
