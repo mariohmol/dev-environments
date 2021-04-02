@@ -78,6 +78,15 @@ wget http://software.virtualmin.com/gpl/scripts/install.sh
 tail -f  /var/log/virtualmin/appname.com_access_log 
 ```
 
+To configure an Wordpres, you need to go to Webmin -> Servers -> Nginx WebServer -> 
+Edit Configuration Files. Find the conf for the wordpress domain you want, and add this conf 
+to make permlinks available.
+
+```conf
+location / {
+try_files $uri $uri/ /index.php?$args;
+}
+```
 ### Webmail
 
 ```
@@ -110,6 +119,10 @@ Config/Managment:
 nano /etc/mongod.conf 
 service mongod restart
 ```
+
+You can open the port of mongo for a specific IP:
+tcp|in|d=27017|s=199.199.199.199
+
 
  ## Firewall
 
@@ -265,10 +278,13 @@ nano /etc/pam.d/smtp
 ```sh
 # find files
 dnf install mlocate
+
 # update the index for files
 updatedb
+
 # show top resources
 top
+
 # show free mem
 free -m
 ```
@@ -331,6 +347,13 @@ cd /etc/nginx/conf.d/php-fpm.conf
 
 Remove apache to install nginx:
 `service httpd stop ; chkconfig httpd off`
+
+Add to the `/etc/nginx/nginx.conf` , to support bigger post request for uploadfiles.
+```conf
+html {
+        client_max_body_size 50M;
+}
+```
 
 ### Certbot
 

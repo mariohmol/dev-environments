@@ -11,6 +11,8 @@ export ANDROID_SDK_ROOT=/Users/username/Library/Android/sdk
 Open you Android mobile, go to the Settings, go to About and click 10 time on the Build version. 
 It will show a message like Developer Mode activated.
 
+If you go to the Settings again, You will see an `Developer Options`,  there u can toggle to dont turn off and  USB debugging, and Install via USB.
+
 Then run `npm run android`
 
 ### Emulator
@@ -19,7 +21,22 @@ Open Android Studio -> Configure -> AVD Manager, then you can install different 
 Check the [Android AVD Docs](https://developer.android.com/studio/run/managing-avds#createavd) to get more details on how to create it.
 
 
-## App Icons
+
+
+ADB let you to manage the connectio between your computer and the device or simulator
+```sh
+# List registered devices
+adb devices
+
+# Stop and start server
+adb kill-server
+adb start-server
+
+nano ~/.android/adb_usb.ini
+
+```
+
+## App Logo/Icon
 
 You need to replace current icons in mipmap folder named: `android/app/src/main/res/mipmap*`
 There you will see files like `ic_launcher` and `ic_launcher_round`, which you can find the same in `AndroidManifest.xml` (check application tag: ‘ic’ in ‘ic_launcher’ stands for ‘icon’)
@@ -109,6 +126,8 @@ Open the `android/app/build.gradle` and increment the versions:
     }
 ...
 ```
+
+Remember to point the production endpoint in `config.js`
 
 Create in your package.json a task to build de release:
 ```json

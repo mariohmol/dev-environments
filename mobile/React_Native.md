@@ -6,6 +6,12 @@ export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jre/jdk/Contents/Hom
 export ANDROID_SDK_ROOT=/Users/username/Library/Android/sdk
 ```
 
+## Code Style
+
+```sh
+npx eslint --init
+npx eslint src/**/*.tsx
+```
 ## Plugins
 
 ```sh
@@ -54,10 +60,11 @@ Run instructions for [Windows and macOS](https://aka.ms/ReactNative)
 * https://github.com/jondot/awesome-react-native
 * https://magnus-ui.com/docs/dropdown/
 
-TODO: 
+
+**Slider
 ```sh
-# Slider
-npm i --save react-native-slider
+npm install @react-native-community/slider
+npx pod-install
 ```
 
 ## Paper - Material Design
@@ -72,6 +79,12 @@ npm add @babel/runtime
 **[Dropdown for paper](https://github.com/srk-sharingan/sharingan-rn-modal-dropdown)**
 ```sh
 npm i sharingan-rn-modal-dropdown
+```
+
+**[Tabs for paper](https://github.com/web-ridge/react-native-paper-tabs)**
+```sh
+npm install react-native-paper-tabs @react-native-community/viewpager
+npx pod-install
 ```
 
 
@@ -134,6 +147,54 @@ This is a step by step comprehensive React Native Navigation v5 tutorial. In thi
 * [React Native Navigation v5 Example Tutorial](https://www.positronx.io/react-native-navigation-example-tutorial/)
 * [Passing & Getting Params to Screen](https://www.positronx.io/react-native-stack-navigator-passing-getting-params-to-screen/)
 
+
+## Charts
+
+npm i react-native-chart-kit react-native-svg
+
+
+## Native
+
+
+**[Image Picker](https://github.com/react-native-image-picker/react-native-image-picker)** 
+```sh
+yarn add react-native-image-picker
+cd ios && pod install
+```
+
+For android add to `debug\AndroidManifest.xml `
+```xml
+<uses-permission android:name="android.permission.CAMERA"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+```
+
+For iOS add to `Info.plist`
+```xml
+<!-- to choose image from gallery  -->
+<key>NSPhotoLibraryUsageDescription</key>
+<true/>
+<!-- to capture image  -->
+<key>NSCameraUsageDescription</key>
+<true/>
+<!-- Add this to make videos -->
+<key>NSMicrophoneUsageDescription</key>
+<true/>
+```
+
+
+**[Image Resizer](https://github.com/bamlab/react-native-image-resizer)** 
+```sh
+yarn add react-native-image-resizer
+cd ios && pod install
+cd android && ./gradlew clean
+
+# If you still with issues, do:
+cd android && rm -rf .gradle && rm -rf .idea
+```
+
+## Flow
+
+https://reactnative.dev/docs/flexbox
 
 ## Utils
 

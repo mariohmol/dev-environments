@@ -109,10 +109,16 @@ Install [Dbvear](https://dbeaver.io/download/) to manage postgres.
 
 ### Mongo
 
+Install with brew:
 ```sh
 brew tap mongodb/brew
 brew install mongodb-community
 brew services start mongodb-community
+```
+
+Or if you install with apt-get:
+```sh
+service mongod restart
 ```
 
 if you don't want/need a background service you can just run:
@@ -125,6 +131,11 @@ MongoCompass:
 
 RoboMongo
 * https://robomongo.org/
+
+You can find the logs:
+```sh 
+tail -f /var/log/mongodb/mongod.log 
+```
 
 ### MySQL
 

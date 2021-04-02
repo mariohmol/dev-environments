@@ -103,6 +103,10 @@ nano /opt/appname/Passengerfile.json
 chown appname /opt/appname/Passengerfile.json
 ```
 
+You can test the standalone passenger server:
+``sh
+passenger start --socket /tmp/app_test.socket -d --nginx-version 1.0.5 -e production
+```
 Files:
 ```sh
 # Global nginx conf
@@ -184,13 +188,31 @@ nano config/initializers/setup_mail.rb
 # If you use cache, refresh it when needed
 redis-cli flushall
 ```
-**Schedule/Whenever**
-To run tasks in your cron, install the whenever module: `gem install whenever:0.9.4`. To include the tasks in the cron, use `whenever --update-crontab`.
+
 
 ### Throubleshooting
 
 **Error**: gcc: error: unrecognized command line option '-Wduplicated-cond'
 **Solution**: brew unlink gcc
+
+## Cron
+
+**Schedule/Whenever**
+To run tasks in your cron, install the whenever module: `gem install whenever:0.9.4`. 
+To include the tasks in the cron, use `whenever --update-crontab`.
+
+It will create a file like:
+`sudo nano /var/spool/cron/crontabs/username`
+
+If you want to edit this, run:
+`crontab -e`
+
+To list the current cron tasks:
+`crontab -l`
+
+To check the log of the cron executed, do:
+`grep CRON /var/log/syslog`
+
 
 ## SSL
 
@@ -224,7 +246,7 @@ Good luck!
 # MIGRATE
 
 * Rails 4.1 use Ruby 2.2
-* Rails 4.2 use Ruby 2.4
+
 
 For Rails 4.x use bundle2:
 ```sh
@@ -232,6 +254,14 @@ gem install bundler:2.0.0.pre.3
 bundle _2.0.0.pre.3_ install --full-index
 ```
 
+## 4.1 to 4.2
+
+* Rails 4.2 use Ruby 2.4
+
+```rb
+# cookies_serializer.rb - change it to hybrid, been able to use the old :marshal and the new :json
+Rails.application.config.action_dispatch.cookies_serializer = :hybrid
+```
 ## 4.2 to 5.0
 
 Following this [ Guide](https://www.fastruby.io/blog/rails/upgrades/upgrade-rails-from-4-2-to-5-0.html)
@@ -244,7 +274,7 @@ you have to:
 * Remove the protected_attributes from the project
 * remove the `assert_template` or add the `gem 'rails-controller-testing'`
 * change `ActionDispatch::Http::UploadedFile` to test uploads to use `Rack::Test::UploadedFile`
-
+* This gem can lead to problems, `gem install racc -v '1.5.2' --source 'https://rubygems.org/'`, use `brew unlink gcc` to fix
 Update bundle: `bundle _2.0.0.pre.3_ update rails`
 
 
@@ -264,6 +294,28 @@ You can try:
 
 ```sh
 gem install nio4r:1.2 -- --with-cflags="-Wno-error=implicit-function-declaration"
-
 bundle config build.nio4r -- --with-cflags="-Wno-error=implicit-function-declaration"
+```
+
+
+
+## Installing a new Ruby on Nginx
+
+```sh
+
+# Use the new ruby version
+rvm use 2.6.3
+
+# Install the bundles specific for that
+gem install bundler:2.0.0.pre.3
+
+# Install the new ruby on the 
+rvmsudo gem install passenger
+passenger-config about ruby-command
+
+# This will show something like
+#  To use in Nginx : passenger_ruby /home/app/.rvm/gems/ruby-2.6.3/wrappers/ruby
+
+# Include this passenger_ruby into your app config
+nano /etc/nginx/sites-enabled/app.com.br.conf 
 ```

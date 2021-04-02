@@ -56,7 +56,26 @@ export optflags="-Wno-error=implicit-function-declaration"
 rvm_rubygems_version=2.7.3 rvm reinstall ruby-2.2.10 --with-openssl-dir=/usr/local/Cellar/openssl@1.0/1.0.2t --with-openssl-lib=/usr/local/Cellar/openssl@1.0/1.0.2t/lib --with-openssl-include=/usr/local/Cellar/openssl@1.0/1.0.2t/include
 ```
 
+Some useful libs for using mac with rails:
+```sh 
+brew install gmp
 
+# Redis cache server
+brew install redis
+brew services start redis
+```
+
+If you need reinstall Command Line Tools:
+```sh
+softwareupdate --all --install --force
+
+# If that doesn't show you any updates, run:
+sudo rm -rf /Library/Developer/CommandLineTools
+sudo xcode-select --install
+```
+
+
+  
 ## Flutter
 
 Use the [official docs](https://flutter.dev/docs/get-started/install/macos)or download, unzip and add in your path:
