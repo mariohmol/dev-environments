@@ -149,8 +149,14 @@ For older versions: install `brew install mysql@5.7`, `brew postinstall mysql@5.
 If you need the paths, run `brew info mysql@5.7` to get the info.
 For config go to: `/usr/local/etc/my.cnf`
 
+**START**
+Every time you restart your computer, you might have to run `mysqld` to start a new 
 
 #### Throubleshoot
+
+
+Set a New Password:
+
 
 If you have problems with installation, password or anything else, try this process:
 ```sh

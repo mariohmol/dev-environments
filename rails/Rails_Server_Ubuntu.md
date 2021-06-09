@@ -7,7 +7,7 @@ sudo nano /etc/apt/sources.list
 #add this line to the file
 deb http://security.ubuntu.com/ubuntu bionic-security main
 sudo apt update
-sudo apt install g++ bison libffi-dev libgdbm-dev libncurses5-dev libsqlite3-dev libyaml-dev sqlite3 libgmp-dev libreadline-dev libssl1.0-dev libtool pkg-config zlib1g-dev build-essential ruby-dev libmysqlclient-dev libcurl4-openssl-dev python2
+sudo apt install g++ bison libffi-dev libgdbm-dev libncurses5-dev libsqlite3-dev libyaml-dev sqlite3 libgmp-dev libreadline-dev libtool pkg-config zlib1g-dev build-essential ruby-dev libmysqlclient-dev libcurl4-openssl-dev python2
 
 # If you use JRuby, this will be necessary
 sudo apt install openjdk-14-jdk
@@ -54,7 +54,7 @@ Install [brew](https://docs.brew.sh/Homebrew-on-Linux):
 * `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
 ```sh
-echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> /home/appname/.bash_profile
+echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> ~/.bash_profile
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 brew install imagemagick jpeg libtiff jasper gcc
 ```

@@ -40,6 +40,10 @@ If you have issues installing rubies:
 To test use: `ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'`
 TO test zlib we can do: `ruby -e'require "zlib"'`
 
+---
+
+With High Sierra install `brew install shared-mime-info`
+
 ----
 
 With the Mac BigSur, you will have issues installing old rubies.

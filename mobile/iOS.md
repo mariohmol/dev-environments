@@ -46,3 +46,13 @@ There you can check iPad as well and next time you run your project with "react-
 Generate the icons here https://appicon.co/ and you will have an ios folder with a lot of different sizes (20, 40 ..)
 
 Open your Xcode and load the projectname.xcworkspace file. On the root directory you will have somethins like ProjectName > ProjectName > Images.xcassets. Add the images from the generated folder according with the size asked in Xcode.
+
+
+## Apple Store
+
+
+To create an [Apple Developer Account](https://developer.apple.com/programs/enroll/) you need first to create an account on DUNS.
+
+
+With your DUNS number, visit
+* https://developer.apple.com/programs/enroll/

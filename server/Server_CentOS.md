@@ -65,8 +65,37 @@ nano /var/webmin/blocked
 nano /etc/webmin/miniserv.conf
 ```
  
+## PHP
 
+Usually modules problems for PHP7 on CentOS8
+```sh
+# Imagick
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y
+dnf config-manager --set-enabled PowerTools
+dnf install -y php php-devel php-pear make
+dnf install -y ImageMagick ImageMagick-devel
+yum distro-sync
+yum install php-pecl-imagick
+pecl install imagick
+service nginx restart
+# to test
+php -r 'phpinfo();' | grep imagick
 
+# SSH2
+yum install libssh2 libssh2-deve
+pecl install -f ssh2
+wget --no-check-certificate https://pecl.php.net/get/ssh2-1.2.tgz
+tar vxzf libssh2-1.9.0.tar.gz
+cd libssh2-1.9.0
+./configure
+make
+make install
+php -r 'phpinfo();' | grep ssh2
+
+# To test
+php -m | grep imagick
+
+```
 ### VirtualMin
 
 ```sh
@@ -120,9 +149,10 @@ nano /etc/mongod.conf
 service mongod restart
 ```
 
-You can open the port of mongo for a specific IP:
+You can open the port of mongo for a specific IP in your Firewall:
+```conf
 tcp|in|d=27017|s=199.199.199.199
-
+```
 
  ## Firewall
 

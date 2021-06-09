@@ -30,6 +30,8 @@ Find powershell in windows search, right click, and open as an administrator. Th
 **VSCode**
 Install the Code Editor for many languages , [VSCode](https://code.visualstudio.com/Download).
 
+You can run VSCode from the command line. Find for Edit Environment Variables, edit Path and add the folder directory where that was installed, for example: `C:\users\{username}\AppData\Local\Programs\Microsoft VS Code`
+
 **Git**
 To have access to the source files for the project you need to use [Git](https://en.wikipedia.org/wiki/Git).
 You can use Git online, creating an account on [ Gitub](http://github.com/) and/or [BitBucket](http://bitbucket.com/).
@@ -99,3 +101,9 @@ If you find the error `The emulator process for AVD ... was killed`, try to..
 
 If you are using the expo for react-native client 
 `npm install --global expo-cli`
+
+
+## Ruby
+
+Install Ruby, we tested using 2.6.x:
+* https://rubyinstaller.org/
