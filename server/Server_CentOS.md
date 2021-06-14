@@ -94,8 +94,16 @@ php -r 'phpinfo();' | grep ssh2
 
 # To test
 php -m | grep imagick
+```
+
+### Wordpress - WP
+
+```sh
+# Add this conf to your virtual server
+try_files $uri $uri/ /index.php?$args;
 
 ```
+
 ### VirtualMin
 
 ```sh

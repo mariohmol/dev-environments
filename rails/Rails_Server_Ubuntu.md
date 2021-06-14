@@ -228,6 +228,9 @@ sudo certbot --debug
 
 # Renew 
 certbot --nginx -d *.appname.com --force-renewal
+
+# Renew all certs
+certbot renew
 ```
 
 
