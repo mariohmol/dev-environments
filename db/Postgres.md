@@ -33,6 +33,6 @@ pg_ctl stop
 pkill pg_ctl
 
 # Kill process by 
-psaux | grep pg_ctl
+ps aux | grep pg_ctl
 kill -9 PID
-````
+```
