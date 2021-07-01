@@ -7,7 +7,7 @@ GRANT USAGE ON SCHEMA databasename to "username";
 GRANT ALL PRIVILEGES ON DATABASE databasename to "username";
 ```
 
-# Backup
+## Backup
 
 ```sh
 # Simple dump of database 
@@ -22,3 +22,17 @@ psql dbname < infile
 # Restore an database from server
 psql -U postgres -h amazon -d dbname -P < dump.sql
 ```
+
+## Manage Process
+
+```sh
+pg_ctl start
+pg_ctl stop
+
+# Kill process by name
+pkill pg_ctl
+
+# Kill process by 
+psaux | grep pg_ctl
+kill -9 PID
+````
