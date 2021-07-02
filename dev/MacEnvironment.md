@@ -136,7 +136,8 @@ Install the Command Lines for Xcode in [Downloads Page](https://developer.apple.
 
 ## Databases
 
-**Postgres**
+### Postgres
+
 `brew install postgres`
 
 ```sh
@@ -150,7 +151,7 @@ Install [Dbvear](https://dbeaver.io/download/) to manage postgres:
 * https://dbeaver.io/files/dbeaver-ce-latest-macos.dmg
 
 
-**Mongo**
+### Mongo
 
 ```sh
 brew tap mongodb/brew
@@ -169,7 +170,7 @@ MongoCompass:
 RoboMongo
 * https://robomongo.org/
 
-**MySQL**
+### MySQL
 
 Install mysql via brew, `brew install mysql`
 To start the service use `brew services start mysql` e para conectar via console `mysql -uroot`

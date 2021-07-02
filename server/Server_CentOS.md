@@ -49,9 +49,6 @@ gpgcheck=1
 gpgkey=http://www.webmin.com/jcameron-key.asc" >/etc/yum.repos.d/webmin.repo; yum -y install webmin)
 ```
 
-ls /etc/webmin/htusers
-
-
 Install webming with nginx:
 ```sh
 yum install wbm-virtualmin-nginx wbm-virtualmin-nginx-ssl
@@ -226,6 +223,26 @@ cd  /etc/mail/dkim-milter/keys/
 ```  
 
 
+```sh
+# List de mail queue
+mailq
+# Delete all emails on queue
+postsuper -d ALL
+
+```
+
+Analyze logs:
+```sh
+# install postfix scripts
+yum -y install postfix-perl-scripts
+# Check the total messages sent
+perl /usr/sbin/pflogsumm -d yesterday /var/log/maillog
+# Search by last sents
+grep "status=sent" /var/log/maillog
+# Search by specific email
+grep "root@localhost.localdomain" /var/log/maillog
+```
+
 ## SSL
 
 
@@ -362,6 +379,14 @@ csf -e
 csf -r
 service csf reload
 service csf restart
+```
+
+```sh
+# Configure CSFto ignore some core process
+/etc/csf/csf.pignore
+# For example:
+exe:/usr/sbin/dovecot
+exe:/usr/sbin/postgrey
 ```
 
 ## Nginx

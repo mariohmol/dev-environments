@@ -2,10 +2,10 @@
 
 A cheatsheet with step by step to configure a Ubuntu OS from the scratch with the best tools for development. Teste on latest 20.04 LTS.
 
-Install brew
-* https://brew.sh
-
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+Install [brew](https://brew.sh)
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+```
 
 **Troubleshoot**
 If you have errors:
@@ -28,8 +28,27 @@ brew install wget
 
 ## Ruby
 
-RVM
-* https://rvm.io/rvm/install
+You can check the official [RVM](* https://rvm.io/rvm/install)
+
+```sh
+# Install dependency
+sudo apt install curl
+
+# Install RVM
+\curl -sSL https://get.rvm.io | bash
+
+# Open a new terminal and use
+rvm use --login
+
+# Install Ruby version 
+rvm install 2.6.3
+
+# Use the ruby version
+rvm use 2.6.3
+
+# Install bundler for gems control
+gem install bundler
+```
 
 Then install the ruby use: 
 `rvm install 2.6.3`
@@ -69,7 +88,7 @@ Install the Dart and Flutter Plugin for VSCode.
 
 ## Android
 
-* https://developer.android.com/studio
+Install the [Android Studio](https://developer.android.com/studio) and:
 * `brew install bundletool android-platform-tools`
 
 Instruction for adding into [Ubuntu environment](https://docs.expo.io/workflow/android-studio-emulator/).
@@ -77,7 +96,6 @@ Instruction for adding into [Ubuntu environment](https://docs.expo.io/workflow/a
 
 Add paths to profile:
 ```sh
-
 ANDROID_SDK=$HOME/Library/Android/sdk || ANDROID_SDK=$HOME/Android/Sdk
 
 echo 'export ANDROID_HOME=/Users/$USER/Library/Android/sdk' >> ~/.bashrc
