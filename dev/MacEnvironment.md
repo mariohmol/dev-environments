@@ -141,10 +141,11 @@ Install the Command Lines for Xcode in [Downloads Page](https://developer.apple.
 `brew install postgres`
 
 ```sh
-To have launchd start postgresql now and restart at login:
-  brew services start postgresql
-Or, if you don't want/need a background service you can just run:
-  pg_ctl -D /usr/local/var/postgres start
+# To have launchd start postgresql now and restart at login:
+brew services start postgresql
+# Or, if you don't want/need a background service you can just run:
+
+pg_ctl -D /usr/local/var/postgres start
 ```
 
 Install [Dbvear](https://dbeaver.io/download/) to manage postgres:
@@ -157,6 +158,10 @@ Install [Dbvear](https://dbeaver.io/download/) to manage postgres:
 brew tap mongodb/brew
 brew install mongodb-community
 brew services start mongodb-community
+
+# If you have issues you cn try:
+mkdir ~/data && mkdir ~/data/db
+sudo mongod --dbpath ~/data/db &
 ```
 
 if you don't want/need a background service you can just run:

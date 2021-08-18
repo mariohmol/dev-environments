@@ -1,3 +1,8 @@
+How to create an development enviroment at windows.
+
+First enable to run scripts, open the Powershell as an Administrator and run:
+`set-executionpolicy remotesigned`
+
 # Node
 
 Install node for windows from [Nodejs downloads](https://nodejs.org/en/download/).

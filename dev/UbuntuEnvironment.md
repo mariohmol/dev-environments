@@ -5,6 +5,12 @@ A cheatsheet with step by step to configure a Ubuntu OS from the scratch with th
 Install [brew](https://brew.sh)
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+
+# Add this to your ~/.bashrc as well
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+sudo apt install  build-essential
+brew install gcc
 ```
 
 **Troubleshoot**
@@ -112,6 +118,11 @@ Install JDK using the installer in [JDK download page](https://www.oracle.com/ja
 
 ## Databases
 
+### Tools
+
+Install [Dbeaver](https://dbeaver.io/download/) to manage all databases.
+Download the .dbk, use dpkg -i db file and if you have issues during the installation use `sudo apt install -f`
+
 ### Postgres
 `brew install postgres`
 
@@ -121,10 +132,6 @@ To have launchd start postgresql now and restart at login:
 Or, if you don't want/need a background service you can just run:
   pg_ctl -D /usr/local/var/postgres start
 ```
-
-Install [Dbvear](https://dbeaver.io/download/) to manage postgres.
-
-
 ### Mongo
 
 Install with brew:
@@ -160,12 +167,25 @@ tail -f /var/log/mongodb/mongod.log
 Install mysql via brew, `brew install mysql`
 To start the service use `brew services start mysql` e para conectar via console `mysql -uroot`
 
+At the end it will echo export export LDF CPP.., run those commands.
+To start use .../mysql/
+
+
+If you need to have mysql@5.6 first in your PATH, run: echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/mysql@5.6/bin:$PATH"' >> /home/prosas/.bash_profile For compilers to find mysql@5.6 you may need to set: export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/mysql@5.6/lib" export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/mysql@5.6/include" Warning: mysql@5.6 provides a launchd plist which can only be used on macOS! You can manually execute the service instead with: /home/linuxbrew/.linuxbrew/opt/mysql@5.6/bin/mysql.server start
+
+
+
+
 Use the [MySQLWorkbench](https://dev.mysql.com/downloads/workbench/) to manage the data using GUI.
 
 For older versions: install `brew install mysql@5.7`, `brew postinstall mysql@5.7` and 
 `brew services start mysql@5.7`.
 If you need the paths, run `brew info mysql@5.7` to get the info.
 For config go to: `/usr/local/etc/my.cnf`
+
+
+apt install libmysqlclient-dev 
+apt install mysql-devel ???
 
 **START**
 Every time you restart your computer, you might have to run `mysqld` to start a new 

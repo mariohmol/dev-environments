@@ -26,13 +26,21 @@ psql -U postgres -h amazon -d dbname -P < dump.sql
 ## Manage Process
 
 ```sh
+# Start the Process
 pg_ctl start
+
+# Stop the process
 pg_ctl stop
 
 # Kill process by name
-pkill pg_ctl
+sudo pkill postgres
 
-# Kill process by 
-ps aux | grep pg_ctl
-kill -9 PID
+# Find the process
+ps aux | grep postgres
+
+# Kill process by Process ID
+sudo kill -9 PID
+
+# If you receive a message of lock file postmaster.pid
+rm /usr/local/var/postgres/postmaster.pid
 ```
