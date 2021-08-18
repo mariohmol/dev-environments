@@ -171,7 +171,7 @@ At the end it will echo export export LDF CPP.., run those commands.
 To start use .../mysql/
 
 
-If you need to have mysql@5.6 first in your PATH, run: echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/mysql@5.6/bin:$PATH"' >> /home/prosas/.bash_profile For compilers to find mysql@5.6 you may need to set: export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/mysql@5.6/lib" export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/mysql@5.6/include" Warning: mysql@5.6 provides a launchd plist which can only be used on macOS! You can manually execute the service instead with: /home/linuxbrew/.linuxbrew/opt/mysql@5.6/bin/mysql.server start
+If you need to have mysql@5.6 first in your PATH, run: echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/mysql@5.6/bin:$PATH"' >> /home/username/.bash_profile For compilers to find mysql@5.6 you may need to set: export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/mysql@5.6/lib" export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/mysql@5.6/include" Warning: mysql@5.6 provides a launchd plist which can only be used on macOS! You can manually execute the service instead with: /home/linuxbrew/.linuxbrew/opt/mysql@5.6/bin/mysql.server start
 
 
 
