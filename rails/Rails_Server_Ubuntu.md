@@ -92,21 +92,20 @@ sudo cp /etc/nginx/sites-available/proprod.appname.com.conf /etc/nginx/sites-ena
 sudo certbot
 ```
 
-Give permisssions for you app folder:
 ```sh
+#Give permisssions for you app folder:
 chmod g+x,o+x /opt/appname/
-````
 
-Create a basic Passenger File:
-```
+
+#Create a basic Passenger File:
 nano /opt/appname/Passengerfile.json
 chown appname /opt/appname/Passengerfile.json
+
+#You can test the standalone passenger server:
+passenger start --socket /tmp/app_test.socket -d --nginx-version 1.0.5 -e production
+
 ```
 
-You can test the standalone passenger server:
-``sh
-passenger start --socket /tmp/app_test.socket -d --nginx-version 1.0.5 -e production
-```
 Files:
 ```sh
 # Global nginx conf
