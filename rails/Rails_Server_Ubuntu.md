@@ -215,34 +215,7 @@ To check the log of the cron executed, do:
 
 ## SSL
 
-```sh
-# Add new nginx domain for https
-sudo certbot --nginx -d appname.com
-
-# For wildcard subdomains
-certbot certonly --manual -d *.appname.com -d appname.com --agree-tos --manual-public-ip-logging-ok --preferred-challenges dns-01 --server https://acme-v02.api.letsencrypt.org/directory
-
-# If have issues, use the debug mode
-sudo certbot --debug
-
-# Renew 
-certbot --nginx -d *.appname.com --force-renewal
-
-# Renew all certs
-certbot renew
-```
-
-
-### Migration Plam
-
-1. Send an email to your use base scheduling a day , preferred at night and weekends, or when is less busy.
-2. In the production server, stop your application, put a good Maintanance page to alert your users, run `rake maintenance:start`.
-3. You had to have prepared the server before hand and copy most of the files. But after you stop your app put to rsync again and copy latest files.
-4. Change your DNS A Record to point to the new server. The new server should be on Maitenance Page as well, until the rsync is done.
-5. Run the certification process into the new server, ex: `sudo certbot --nginx -d mydomain.com.br`
-6. When rsync is down, take of the Maintenance page and test a lot your app.
-
-Good luck!
+For SSL and NGINX follow the [Nginx Docs](../server/Nginx.md)
 
 
 # MIGRATE
@@ -299,6 +272,17 @@ gem install nio4r:1.2 -- --with-cflags="-Wno-error=implicit-function-declaration
 bundle config build.nio4r -- --with-cflags="-Wno-error=implicit-function-declaration"
 ```
 
+
+### Migration Plam
+
+1. Send an email to your use base scheduling a day , preferred at night and weekends, or when is less busy.
+2. In the production server, stop your application, put a good Maintanance page to alert your users, run `rake maintenance:start`.
+3. You had to have prepared the server before hand and copy most of the files. But after you stop your app put to rsync again and copy latest files.
+4. Change your DNS A Record to point to the new server. The new server should be on Maitenance Page as well, until the rsync is done.
+5. Run the certification process into the new server, ex: `sudo certbot --nginx -d mydomain.com.br`
+6. When rsync is down, take of the Maintenance page and test a lot your app.
+
+Good luck!
 
 
 ## Installing a new Ruby on Nginx

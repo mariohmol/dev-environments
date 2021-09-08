@@ -217,6 +217,9 @@ Network:
 Test ports used by services like mysql, for instance:
 * nc -v localhost 3306
 
+DNS:
+Clean up dns cache
+* sudo killall -HUP mDNSResponder;
 
 Updatedb:
 Configure the files indexing to find files easy:

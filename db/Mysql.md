@@ -16,8 +16,8 @@ sudo mysql
 * Changing password
 
 ```sql
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
-
+ALTER USER 'root'@'localhost' IDENTIFIED BY '';
+FLUSH PRIVILEGES;
 UPDATE mysql.user SET authentication_string = PASSWORD('new_password') WHERE User = 'root' AND Host = 'localhost';
 
 FLUSH PRIVILEGES;
