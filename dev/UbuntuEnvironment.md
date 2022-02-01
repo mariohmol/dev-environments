@@ -4,7 +4,7 @@ A cheatsheet with step by step to configure a Ubuntu OS from the scratch with th
 
 Install [brew](https://brew.sh)
 ```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Add this to your ~/.bashrc as well
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
@@ -80,6 +80,11 @@ export optflags="-Wno-error=implicit-function-declaration"
 rvm_rubygems_version=2.7.3 rvm reinstall ruby-2.2.10 --with-openssl-dir=/usr/local/openssl@1.0/1.0.2t --with-openssl-lib=/usr/local/openssl@1.0/1.0.2t/lib --with-openssl-include=/usr/local/openssl@1.0/1.0.2t/include
 ```
 
+You might need some aditional libs for rails project:
+
+```sh
+sudo apt-get install imagemagick
+```
 
 ## Flutter
 
@@ -234,3 +239,8 @@ Network:
 Test ports used by services like mysql, for instance:
 * telnet localhost 3306
 
+## RobotJS
+
+sudo apt install libx11-dev
+sudo apt install libxtst-dev
+brew install -v glibc

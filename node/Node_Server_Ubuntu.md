@@ -69,3 +69,11 @@ An alternative for supervisor it's [PM2](https://pm2.keymetrics.io/docs/usage/qu
 Inside the project folder, you can start the execution:
 * `pm2 start npm --name "appame" -- start`
 * `pm2 restart appame`
+
+## Tests
+
+If you use robotjs for testing , you will need:
+`sudo apt-get install libxtst-dev libpng++-dev`
+
+https://gitlab.com/OlivierLuG/selenium_firefox/-/pipelines/225756742
+

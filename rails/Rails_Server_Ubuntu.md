@@ -212,6 +212,8 @@ To list the current cron tasks:
 To check the log of the cron executed, do:
 `grep CRON /var/log/syslog`
 
+If you have issues configuring the ruby version when running the schedule, 
+check the file `.ruby-version` inside the folder where the script will run.
 
 ## SSL
 

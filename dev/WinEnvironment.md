@@ -41,6 +41,9 @@ You can run VSCode from the command line. Find for Edit Environment Variables, e
 To have access to the source files for the project you need to use [Git](https://en.wikipedia.org/wiki/Git).
 You can use Git online, creating an account on [ Gitub](http://github.com/) and/or [BitBucket](http://bitbucket.com/).
 
+To avoid problems with git and file configs, use:
+`git config --global core.autocrlf true`
+
 Install [SourceTree](https://www.sourcetreeapp.com/) as a user interface to manage your source with git.
 During install it asks for an bitbucket account, you can skip if you want. 
 After install, click in Remote repo, add an Account, choose Github and make the Oauth with your user.

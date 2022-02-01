@@ -122,3 +122,16 @@ render nothing: true, status: :ok
 # to
 head 200, content_type: "text/html"
 ```
+
+## 6.0
+
+gem 'rails', '~> 6.0'
+gem install bundler:2.2.7
+bundle update rails
+rails app:update
+
+* https://www.rubycommunity.org/articles/upgrade-rails-from-5-2-to-6-0
+* https://www.fastruby.io/blog/rails/upgrades/upgrade-rails-from-5-2-to-6-0.html
+
+NOTE: The default key case for the JsonApi adapter has changed to dashed.
+See https://github.com/rails-api/active_model_serializers/blob/master/docs/general/key_transforms.md

@@ -99,6 +99,8 @@ php -m | grep imagick
 # Add this conf to your virtual server
 try_files $uri $uri/ /index.php?$args;
 
+# If you have a blog under a subdirctory, for example /blog, do:
+try_files $uri $uri/ /blog/index.php?$args;
 ```
 
 ### VirtualMin
