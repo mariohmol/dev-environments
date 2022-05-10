@@ -115,3 +115,49 @@ If you are using the expo for react-native client
 
 Install Ruby, we tested using 2.6.x:
 * https://rubyinstaller.org/
+
+## Linux SubSystem
+
+You can login as a root using your Powershell and then reset password for instance.
+* wsl --user root
+* wsl config --default-user yourusername
+
+# Docker
+
+```sh
+apt install docker.io docker-compose
+
+VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | grep -Po '"tag_name": "\K.*\d')
+DESTINATION=/usr/local/bin/docker-compose
+sudo chmod 755 $DESTINATION
+
+# Add export PATH=$PATH:/usr/local/bin/
+nano ~/.profile
+
+# Start the process
+dockerd
+```
+
+**Throubleshooting**
+Issues when installing libc, do this
+```sh
+sudo mv /var/lib/dpkg/info/libc-bin.* /tmp/
+sudo apt install libc-bin
+```
+
+If you have problems starting docker with iptables:
+```sh
+apt-get install xtables-addons-common xtables-addons-source
+m-a prepare
+m-a build xtables-addons
+m-a install xtables-addons
+```
+
+Issues with docker:
+
+Use [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package)
+
+```sh
+wsl --set-version Ubuntu 2
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```

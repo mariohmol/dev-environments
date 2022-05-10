@@ -351,6 +351,11 @@ Test server networks speed:
 wget https://nj-lg.shockhosting.net/static/1000MB.test--2020-08-28
 ```
 
+Search for process in ports
+```sh
+apt install net-tools
+ss -ltpn
+```
 
 ## Security
 
@@ -474,3 +479,13 @@ service httpd start
 service httpd stop
 ```
  
+ ## Files
+
+ 
+Copy files over servers:
+```sh
+# Copy local file to a server
+scp package-lock.json user@168.0.0.1:/home/user/folder
+# Copy from a server to a local
+scp user@168.0.0.1:/home/user/folder/package-lock.json ./
+```sh
