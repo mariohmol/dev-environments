@@ -9,7 +9,7 @@ Install [brew](https://brew.sh)
 # Add this to your ~/.bashrc as well
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-sudo apt install  build-essential
+sudo apt install build-essential
 brew install gcc
 ```
 
@@ -20,17 +20,26 @@ git config --global http.postBuffer 5242880000
 git config --global http.sslVerify "false" 
 ```
 
-Install VSCode
-* https://code.visualstudio.com/Download
+Install [VSCode](https://code.visualstudio.com/docs/?dv=linux64_deb),
 
-Install Node:
-* https://nodejs.org/en/download/
-
-Install useful node libs:
-* `sudo npm i -g ts-node nodemon`
 
 **Utils**
 brew install wget
+apt install locate
+
+## Node
+
+Install [NVM](https://github.com/nvm-sh/nvm#installing-and-updating)
+for multiple node versions
+```sh
+source ~/.bashrc
+nvm install 14
+```
+
+Install Single [Node](https://nodejs.org/en/download/)
+
+Install useful node libs:
+* `sudo npm i -g ts-node nodemon`
 
 ## Ruby
 
@@ -38,7 +47,7 @@ You can check the official [RVM](* https://rvm.io/rvm/install)
 
 ```sh
 # Install dependency
-sudo apt install curl
+sudo apt install curl gawk g++ gcc autoconf automake bison libc6-dev libffi-dev libgdbm-dev libncurses5-dev libsqlite3-dev libtool libyaml-dev make pkg-config sqlite3 zlib1g-dev libgmp-dev libreadline-dev libssl-dev
 
 # Install RVM
 \curl -sSL https://get.rvm.io | bash
@@ -52,25 +61,47 @@ rvm install 2.6.3
 # Use the ruby version
 rvm use 2.6.3
 
+# Install Gems
+sudo apt install ruby-rubygems
+
 # Install bundler for gems control
-gem install bundler
+sudo gem install bundler
 ```
 
-Then install the ruby use: 
-`rvm install 2.6.3`
 
 If you have issues installing rubies:
-* `openssl missing`:  `brew install rbenv/tap/openssl@1.0`
+**openssl**
+```sh
+# If you have issues installing old rubies.
+# You can intall openssl using rvm:
+rvm pkg install openssl
+# Then install 
+rvm install 2.7.4 --with-openssl-dir=$HOME/.rvm/usr
+
+# You can set the autolibs on with homebrew:
+rvm autolibs enable
+rvm autolibs homebrew
+
+# Using Brew
+# First you can try to find the paths for zlib/openssl using:
+brew info openssql
+# Install if needed
+brew install openssl@1.1
+# For rbenv: brew install rbenv/tap/openssl@1.0
+rvm install ruby-2.7.4 --with-openssl-dir=$(brew --prefix openssl)
+
+# or force the link with openssl: 
+brew link --force openssl
+```
+
 To test use: `ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'`
-TO test zlib we can do: `ruby -e'require "zlib"'`
+
+**zlib**
+To test zlib we can do: `ruby -e'require "zlib"'`
 
 ----
 
-If you have issues installing old rubies.
-You can sintall openssl using `rvm pkg install openssl`.
-You can set the autolibs on with homebre: `rvm autolibs enable` and `rvm autolibs homebrew`
 
-First you can try to find the paths for zlib/openssl using `brew info openssql` or force the link with openssl: `brew link --force openssl`;
 
 ```sh
 export LDFLAGS="-L/usr/local/opt/openssl@1.0/lib"
@@ -128,7 +159,8 @@ Install JDK using the installer in [JDK download page](https://www.oracle.com/ja
 Install [Dbeaver](https://dbeaver.io/download/) to manage all databases.
 Download the .dbk, use dpkg -i db file and if you have issues during the installation use `sudo apt install -f`
 
-### Postgres
+### PostgreSQL
+
 `brew install postgres`
 
 ```sh
@@ -138,6 +170,13 @@ Or, if you don't want/need a background service you can just run:
   pg_ctl -D /usr/local/var/postgres start
 ```
 ### Mongo
+
+Install [MongoDB](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/) with debian.
+You might need a custom [OpenSSL](http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb) package:
+```sh
+sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+```
+
 
 Install with brew:
 ```sh
@@ -156,11 +195,9 @@ if you don't want/need a background service you can just run:
 
 Database location is `/usr/lobal/var/mongodb` (be confirmed by `brew cat mongodb-comunnity`).
 
-MongoCompass:
-* https://www.mongodb.com/try/download/compass
+* [Mongo Compass](https://www.mongodb.com/try/download/compass)
+* [RoboMongo](https://robomongo.org/)
 
-RoboMongo
-* https://robomongo.org/
 
 You can find the logs:
 ```sh 
@@ -244,3 +281,7 @@ Test ports used by services like mysql, for instance:
 sudo apt install libx11-dev
 sudo apt install libxtst-dev
 brew install -v glibc
+
+## Utils
+
+[Spotify](https://www.spotify.com/us/download/linux)

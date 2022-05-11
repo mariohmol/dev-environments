@@ -3,6 +3,12 @@
 
 ```sh
 sudo systemctl start mysql
+sudo systemctl stop mysql
+```
+
+Load without pass permissions:
+```sh
+sudo mkdir -v /var/run/mysqld && sudo chown mysql /var/run/mysqld
 sudo mysqld_safe --skip-grant-tables --skip-networking &
 ```
 
@@ -22,21 +28,32 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
 ALTER USER 'root'@'localhost' IDENTIFIED BY '';
 FLUSH PRIVILEGES;
 
-UPDATE mysql.user SET authentication_string = PASSWORD('new_password') WHERE User = 'root' AND Host = 'localhost';
+-- Mysql < 8
+-- Check if column is password or authentication_string: 
+select * from mysql.user where user = 'root';
+-- With no password
+UPDATE mysql.user SET authentication_string = '' WHERE User = "root" AND Host = 'localhost';
+
+UPDATE mysql.user SET authentication_string = PASSWORD("123456") WHERE User = "root" AND Host = 'localhost';
+UPDATE mysql.user SET Password = PASSWORD('123456') WHERE User = 'root' AND Host = 'localhost';
 FLUSH PRIVILEGES;
 
 -- Alternative way
-SET PASSWORD FOR 'root'@'localhost' = PASSWORD('root');
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('123456');
 FLUSH PRIVILEGES;
 
 -- grating previleged
 SELECT host FROM mysql.user WHERE user = "root";
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
+
+-- You can set the auth plugin
+update user set plugin="mysql_native_password" where User='root'; 
 ```
 
 
-# Migrate Locale
+# Migrate
+## Migrate Locale
 
 * Dump the database schema (use your own user + password + database):
 
@@ -53,7 +70,11 @@ mysqldump -Q --insert-ignore -t -h localhost -u root -p --default-character-set=
 Connect to the instance, 
 ```sh 
 mysql -uadmin -pPASSWORD -hmyhost.com new-utf8
-````
+```
+
+
+
+## Migrate One Database
 
 
 Create a new UTF-8 database:
@@ -75,6 +96,12 @@ mysql
 use newdb_utf8;
 source dump.newdb.sql;
 source dump.newdb.data.sql;
+```
+## Migrate Databases
+
+```sh
+mysqldump -u root -p --all-databases > dump.sql
+mysql -u root -p < dump.sql
 ```
 
 ### Mysql 5.7 
