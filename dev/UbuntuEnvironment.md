@@ -151,6 +151,9 @@ Install JSE 8
 
 Install JDK using the installer in [JDK download page](https://www.oracle.com/java/technologies/javase-jdk15-downloads.html)
 
+## Python
+
+sudo apt install python
 
 ## Databases
 
@@ -175,8 +178,24 @@ Install [MongoDB](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-o
 You might need a custom [OpenSSL](http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb) package:
 ```sh
 sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+
+# To manage the service
+sudo service mongod start
+sudo service mongod status
+
+# Having issues check the log
+/var/log/mongodb/mongod.log
+
+# Check if this file is created
+touch /tmp/mongodb-27017.sock
+
+# Check if this folder was created as well
+/var/lib/mongodb
 ```
 
+
+
+#### Using Brew
 
 Install with brew:
 ```sh
@@ -194,6 +213,8 @@ if you don't want/need a background service you can just run:
   `mongod --config /usr/local/etc/mongod.conf`
 
 Database location is `/usr/lobal/var/mongodb` (be confirmed by `brew cat mongodb-comunnity`).
+
+
 
 * [Mongo Compass](https://www.mongodb.com/try/download/compass)
 * [RoboMongo](https://robomongo.org/)
@@ -276,12 +297,10 @@ Network:
 Test ports used by services like mysql, for instance:
 * telnet localhost 3306
 
+[Spotify](https://www.spotify.com/us/download/linux)
+
 ## RobotJS
 
 sudo apt install libx11-dev
 sudo apt install libxtst-dev
 brew install -v glibc
-
-## Utils
-
-[Spotify](https://www.spotify.com/us/download/linux)
