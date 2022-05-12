@@ -86,17 +86,20 @@ brew info openssl
 # Install if needed
 brew install openssl@1.1
 # For rbenv: brew install rbenv/tap/openssl@1.0
-rvm install ruby-2.7.6 --with-openssl-dir=$(brew --prefix openssl)
 
-# Check what brew --prefix openssl returns, if not manually include the folder on the command
-rvm install ruby-3.0.4 --with-openssl-dir=/home/linuxbrew/.linuxbrew/opt/openssl@1.1
+# Check what brew returns for path
+brew --prefix openssl
+# it should return a path, if it points to a version different from 1.1, change manually
+# for example, the commands returns: /home/linuxbrew/.linuxbrew/opt/openssl@3
+# so use /home/linuxbrew/.linuxbrew/opt/openssl@1.1
+rvm install ruby-2.7.6 --with-openssl-dir=/home/linuxbrew/.linuxbrew/opt/openssl@1.1
 
 # or force the link with openssl: 
 brew link --force openssl
 ```
 
 
-If you still have issues with brew, use RVM:
+This process works on Ubuntu 20. If you still have issues with brew, you can try using RVM:
 ```sh
 # If you have issues installing old rubies.
 # You can intall openssl using rvm:
@@ -339,6 +342,17 @@ Test ports used by services like mysql, for instance:
 * telnet localhost 3306
 
 [Spotify](https://www.spotify.com/us/download/linux)
+
+**Discord**
+[Discord](https://discord.com/download)
+
+```sh
+sudo dpkg -i discord-0.0.17.deb 
+# If you have issues with dependencies and install again
+sudo apt --fix-broken install
+```
+
+
 
 ## RobotJS
 
