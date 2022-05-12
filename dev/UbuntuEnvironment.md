@@ -1,6 +1,7 @@
 # Ubuntu environment
 
-A cheatsheet with step by step to configure a Ubuntu OS from the scratch with the best tools for development. Teste on latest 20.04 LTS.
+A cheatsheet with step by step to configure a Ubuntu OS from the scratch with the best tools for development. 
+Tested  on latest 20 LTS and 22 LTS.
 
 Install [brew](https://brew.sh)
 ```sh
@@ -41,6 +42,11 @@ Install Single [Node](https://nodejs.org/en/download/)
 Install useful node libs:
 * `sudo npm i -g ts-node nodemon`
 
+You can have issues on the future installing gihub repos as modules, to fix it use:
+```sh
+git config --global url."https://github.com/".insteadOf git://github.com/
+```
+
 ## Ruby
 
 You can check the official [RVM](* https://rvm.io/rvm/install)
@@ -69,40 +75,43 @@ sudo gem install bundler
 ```
 
 
-If you have issues installing rubies:
-**openssl**
+### OPENSSL
+
+Ruby needs openssl1.x to work, so we have to manually instal it.
+On ubuntu 22 the only way it works is using brew.
 ```sh
-# If you have issues installing old rubies.
-# You can intall openssl using rvm:
-rvm pkg install openssl
-# Then install 
-rvm install 2.7.4 --with-openssl-dir=$HOME/.rvm/usr
-
-# You can set the autolibs on with homebrew:
-rvm autolibs enable
-rvm autolibs homebrew
-
 # Using Brew
 # First you can try to find the paths for zlib/openssl using:
-brew info openssql
+brew info openssl
 # Install if needed
 brew install openssl@1.1
 # For rbenv: brew install rbenv/tap/openssl@1.0
-rvm install ruby-2.7.4 --with-openssl-dir=$(brew --prefix openssl)
+rvm install ruby-2.7.6 --with-openssl-dir=$(brew --prefix openssl)
+
+# Check what brew --prefix openssl returns, if not manually include the folder on the command
+rvm install ruby-3.0.4 --with-openssl-dir=/home/linuxbrew/.linuxbrew/opt/openssl@1.1
 
 # or force the link with openssl: 
 brew link --force openssl
 ```
 
+
+If you still have issues with brew, use RVM:
+```sh
+# If you have issues installing old rubies.
+# You can intall openssl using rvm:
+rvm pkg install openssl
+# Then install 
+rvm reinstall 2.7.6 --with-openssl-dir=$HOME/.rvm/usr
+
+# You can set the autolibs on with homebrew:
+rvm autolibs enable
+rvm autolibs homebrew
+```
+
 To test use: `ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'`
 
-**zlib**
-To test zlib we can do: `ruby -e'require "zlib"'`
-
-----
-
-
-
+You can try to manually include the paths for the openssl installation and try to compile ruby:
 ```sh
 export LDFLAGS="-L/usr/local/opt/openssl@1.0/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@1.0/include"
@@ -111,11 +120,20 @@ export optflags="-Wno-error=implicit-function-declaration"
 rvm_rubygems_version=2.7.3 rvm reinstall ruby-2.2.10 --with-openssl-dir=/usr/local/openssl@1.0/1.0.2t --with-openssl-lib=/usr/local/openssl@1.0/1.0.2t/lib --with-openssl-include=/usr/local/openssl@1.0/1.0.2t/include
 ```
 
+### Libs
+
 You might need some aditional libs for rails project:
 
 ```sh
+# imagemagick
 sudo apt-get install imagemagick
+
+
+# zlib - To test zlib we can do
+ruby -e'require "zlib"'
 ```
+
+----
 
 ## Flutter
 
@@ -153,7 +171,24 @@ Install JDK using the installer in [JDK download page](https://www.oracle.com/ja
 
 ## Python
 
+```sh
 sudo apt install python
+```
+
+## Docker
+
+Installing [Docker on Ubuntu](https://computingforgeeks.com/how-to-install-docker-on-ubuntu/)
+```sh
+sudo apt -y install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+sudo apt install docker.io
+sudo systemctl start docker.service
+sudo systemctl enable docker.service
+```
+
+curl -s https://api.github.com/repos/docker/compose/releases/latest | grep browser_download_url  | grep docker-compose-linux-x86_64 | cut -d '"' -f 4 | wget -qi -
+chmod +x docker-compose-linux-x86_64
+sudo mv docker-compose-linux-x86_64 /usr/local/bin/docker-compose
+
 
 ## Databases
 
@@ -227,6 +262,12 @@ tail -f /var/log/mongodb/mongod.log
 
 ### MySQL
 
+Install with apt
+```sh
+sudo apt-get install mysql-server-8.0 libmysqlclient-dev
+```
+
+**Using Brew**
 Install mysql via brew, `brew install mysql`
 To start the service use `brew services start mysql` e para conectar via console `mysql -uroot`
 
@@ -304,3 +345,19 @@ Test ports used by services like mysql, for instance:
 sudo apt install libx11-dev
 sudo apt install libxtst-dev
 brew install -v glibc
+
+## User Conf
+
+Set default audio conf:
+```sh
+pactl list short sources  
+# Example
+pactl set-default-sink 'alsa_output.pci-0000_01_00.1.hdmi-stereo-extra1.monitor'
+sudo nano /etc/pulse/default.pa
+
+### Make some devices default - name or id?
+set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
+set-default-source alsa_output.pci-0000_00_1f.3.analog-stereo.monitor
+
+rm -r ~/.config/pulse and reboot
+```
