@@ -1,18 +1,36 @@
 # Ubuntu environment
 
 A cheatsheet with step by step to configure a Ubuntu OS from the scratch with the best tools for development. 
-Tested  on latest 20 LTS and 22 LTS.
+Tested on latest 20 LTS and 22 LTS.
+
+Lets start installing basic libs
+```sh
+sudo apt install curl git build-essential gcc
+
+apt-get install linux-headers-$(uname -r)
+```
+
+We will install some packages and most of them are Debian packages (.deb files). You can right click in the deb file -> Open with Other application -> Software Install. Or you can use the `dpkg -i filename.deb`. 
+If you have issues running the package, you can try `sudo apt install -f` and then try to install the deb again.
 
 Install [brew](https://brew.sh)
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Add this to your ~/.bashrc as well
-# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-sudo apt install build-essential
-brew install gcc
+# Run the next steps they provide after this instalattion, something like this
+# ==> Next steps:
+# - Run these two commands in your terminal to add Homebrew to your PATH:
+#     echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/dev/.profile
+#     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# - Install Homebrew's dependencies if you have sudo access:
+#     sudo apt-get install build-essential
+#   For more information, see:
+#     https://docs.brew.sh/Homebrew-on-Linux
+# - We recommend that you install GCC:
+#     brew install gcc
 ```
+
+After this steps, close all your terminals.
 
 **Troubleshoot**
 If you have errors:
@@ -21,12 +39,22 @@ git config --global http.postBuffer 5242880000
 git config --global http.sslVerify "false" 
 ```
 
-Install [VSCode](https://code.visualstudio.com/docs/?dv=linux64_deb),
+Install [VSCode](https://code.visualstudio.com/docs/?dv=linux64_deb)
+
+**Git config**
+```sh
+# Prevent the VSCode/Git to keep tracking file permissions (usually bugs on WSL)
+# For the current repository
+git config core.filemode false   
+
+# Globally do: git config --global core.filemode false
+
+# Configure your username
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+```
 
 
-**Utils**
-brew install wget
-apt install locate
 
 ## Node
 
@@ -39,11 +67,11 @@ nvm install 14
 
 Install Single [Node](https://nodejs.org/en/download/)
 
-Install useful node libs:
-* `sudo npm i -g ts-node nodemon`
-
-You can have issues on the future installing gihub repos as modules, to fix it use:
 ```sh
+# Open a new terminal and install useful node libs:
+npm i -g ts-node nodemon
+
+# You can have issues on the future installing gihub repos as modules, to fix it use:
 git config --global url."https://github.com/".insteadOf git://github.com/
 ```
 
@@ -53,36 +81,21 @@ You can check the official [RVM](* https://rvm.io/rvm/install)
 
 ```sh
 # Install dependency
-sudo apt install curl gawk g++ gcc autoconf automake bison libc6-dev libffi-dev libgdbm-dev libncurses5-dev libsqlite3-dev libtool libyaml-dev make pkg-config sqlite3 zlib1g-dev libgmp-dev libreadline-dev libssl-dev
+sudo apt install gawk g++ gcc autoconf automake bison libc6-dev libffi-dev libgdbm-dev libncurses5-dev libsqlite3-dev libtool libyaml-dev make pkg-config sqlite3 zlib1g-dev libgmp-dev libreadline-dev libssl-dev
 
 # Install RVM
 \curl -sSL https://get.rvm.io | bash
-
-# Open a new terminal and use
-rvm use --login
-
-# Install Ruby version 
-rvm install 2.6.3
-
-# Use the ruby version
-rvm use 2.6.3
-
-# Install Gems
-sudo apt install ruby-rubygems
-
-# Install bundler for gems control
-sudo gem install bundler
 ```
-
 
 ### OPENSSL
 
-Ruby needs openssl1.x to work, so we have to manually instal it.
+Ruby needs openssl1.x to work, so we have to manually install it.
 On ubuntu 22 the only way it works is using brew.
+
+**Using Brew**
+
 ```sh
-# Using Brew
-# First you can try to find the paths for zlib/openssl using:
-brew info openssl
+# First you can try to find the paths for zlib/openssl using: brew info openssl
 # Install if needed
 brew install openssl@1.1
 # For rbenv: brew install rbenv/tap/openssl@1.0
@@ -92,13 +105,12 @@ brew --prefix openssl
 # it should return a path, if it points to a version different from 1.1, change manually
 # for example, the commands returns: /home/linuxbrew/.linuxbrew/opt/openssl@3
 # so use /home/linuxbrew/.linuxbrew/opt/openssl@1.1
-rvm install ruby-2.7.6 --with-openssl-dir=/home/linuxbrew/.linuxbrew/opt/openssl@1.1
-
-# or force the link with openssl: 
-brew link --force openssl
+rvm install ruby-2.7.4 --with-openssl-dir=/home/linuxbrew/.linuxbrew/opt/openssl@1.1
+rvm use --default 2.7.4
+# if doesnt work, try force the link with openssl: brew link --force openssl
 ```
 
-
+**Using RVM**
 This process works on Ubuntu 20. If you still have issues with brew, you can try using RVM:
 ```sh
 # If you have issues installing old rubies.
@@ -112,6 +124,7 @@ rvm autolibs enable
 rvm autolibs homebrew
 ```
 
+**USING PATHS**
 To test use: `ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'`
 
 You can try to manually include the paths for the openssl installation and try to compile ruby:
@@ -123,17 +136,29 @@ export optflags="-Wno-error=implicit-function-declaration"
 rvm_rubygems_version=2.7.3 rvm reinstall ruby-2.2.10 --with-openssl-dir=/usr/local/openssl@1.0/1.0.2t --with-openssl-lib=/usr/local/openssl@1.0/1.0.2t/lib --with-openssl-include=/usr/local/openssl@1.0/1.0.2t/include
 ```
 
-### Libs
-
-You might need some aditional libs for rails project:
-
+Using RVM:
 ```sh
+# (optional) Open a new terminal and use: rvm use --login
+
+# Install Ruby version 
+rvm install 2.7.4
+
+# Use the ruby version
+rvm use 2.7.4
+
+# Install Gems
+sudo apt install ruby-rubygems
+
+# Install bundler for gems control
+sudo gem install bundler
+
+
+# **Libs**: You might need some aditional libs for rails project:
+# 
 # imagemagick
 sudo apt-get install imagemagick
 
-
-# zlib - To test zlib we can do
-ruby -e'require "zlib"'
+# zlib - To test zlib we can do: ruby -e'require "zlib"'
 ```
 
 ----
@@ -182,7 +207,7 @@ sudo apt install python
 
 Installing [Docker on Ubuntu](https://computingforgeeks.com/how-to-install-docker-on-ubuntu/)
 ```sh
-sudo apt -y install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+sudo apt -y install apt-transport-https ca-certificates gnupg-agent software-properties-common
 sudo apt install docker.io
 sudo systemctl start docker.service
 sudo systemctl enable docker.service
@@ -192,13 +217,19 @@ curl -s https://api.github.com/repos/docker/compose/releases/latest | grep brows
 chmod +x docker-compose-linux-x86_64
 sudo mv docker-compose-linux-x86_64 /usr/local/bin/docker-compose
 
+### Kubernetes
+
+Install [VirtualBox](#VirtualBox), start it and do:
+* Go to Create Virtual Machine -> give a name, choose type Linux and version Ubuntu.
+* Choose 5Gb of Ram, a dinamic hard drive, choose a location and create it.
+* Right click on the new Virtual Machine -> Settings -> Storage -> IDE -> Choose Empty -> Click on the disk icon -> Choose a disk file -> Select  .iso for the Ubuntu install file - OK to save
+* Start the Virtual Machine, this will open a Ubuntu installation and complete until the end.
 
 ## Databases
 
 ### Tools
 
-Install [Dbeaver](https://dbeaver.io/download/) to manage all databases.
-Download the .dbk, use dpkg -i db file and if you have issues during the installation use `sudo apt install -f`
+Install [Dbeaver](https://dbeaver.io/download/) to manage all databases. For Ubuntu we can download the [Dbeaver Deb](https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb).
 
 ### PostgreSQL
 
@@ -210,13 +241,20 @@ To have launchd start postgresql now and restart at login:
 Or, if you don't want/need a background service you can just run:
   pg_ctl -D /usr/local/var/postgres start
 ```
+
 ### Mongo
 
-Install [MongoDB](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/) with debian.
+
 You might need a custom [OpenSSL](http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb) package:
 ```sh
+wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
 sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+```
 
+Install following the [MongoDB Installation Docs](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/#install-mongodb-community-edition) with debian.
+
+To manage Mongo you can use:
+```sh
 # To manage the service
 sudo service mongod start
 sudo service mongod status
@@ -265,7 +303,9 @@ tail -f /var/log/mongodb/mongod.log
 
 ### MySQL
 
-Install with apt
+#### Install Mysql
+
+Install with apt:
 ```sh
 sudo apt-get install mysql-server-8.0 libmysqlclient-dev
 ```
@@ -282,7 +322,7 @@ If you need to have mysql@5.6 first in your PATH, run: echo 'export PATH="/home/
 
 
 
-
+**Older MySQLs**
 Use the [MySQLWorkbench](https://dev.mysql.com/downloads/workbench/) to manage the data using GUI.
 
 For older versions: install `brew install mysql@5.7`, `brew postinstall mysql@5.7` and 
@@ -291,17 +331,10 @@ If you need the paths, run `brew info mysql@5.7` to get the info.
 For config go to: `/usr/local/etc/my.cnf`
 
 
-apt install libmysqlclient-dev 
-apt install mysql-devel ???
-
 **START**
 Every time you restart your computer, you might have to run `mysqld` to start a new 
 
-#### Throubleshoot
-
-
-Set a New Password:
-
+**Throubleshoot**
 
 If you have problems with installation, password or anything else, try this process:
 ```sh
@@ -332,28 +365,6 @@ sudo systemctl stop mysql
 ```
 
 
-## Misc
-
-Gimp: Manipulate images
-* `brew install gimp`
-
-Network:
-Test ports used by services like mysql, for instance:
-* telnet localhost 3306
-
-[Spotify](https://www.spotify.com/us/download/linux)
-
-**Discord**
-[Discord](https://discord.com/download)
-
-```sh
-sudo dpkg -i discord-0.0.17.deb 
-# If you have issues with dependencies and install again
-sudo apt --fix-broken install
-```
-
-
-
 ## RobotJS
 
 sudo apt install libx11-dev
@@ -362,7 +373,8 @@ brew install -v glibc
 
 ## User Conf
 
-**AUDIO**
+### AUDIO
+
 Set default audio conf:
 ```sh
 pactl list short sources  
@@ -377,10 +389,130 @@ set-default-source alsa_output.pci-0000_00_1f.3.analog-stereo.monitor
 rm -r ~/.config/pulse and reboot
 ```
 
-**SCREEN SHARING**
+### SCREEN SHARING
+
 ```sh
 sudo nano /etc/gdm3/custom.conf
 # Uncomment line , setting it to false
 WaylandEnable=false
 reboot
 ```
+
+
+### VIDEO CARD
+
+```sh
+# Instal view utils
+sudo apt install mesa-utils
+# check the driver
+glxinfo -B
+# Show the PCI Graphic card
+lspci -nn | grep -E 'VGA|Display'
+# check the fps with
+glxgears
+
+# Using OPen GL
+sudo apt-get install glmark2
+```
+
+Download the [Official Drivers](https://www.nvidia.com/Download/index.aspx) specific for you video card and Linux 64bits.
+If you dont know  exactly the video card,:
+```sh
+lspci
+# You will see something like this
+# 01:00.0 VGA compatible controller: NVIDIA Corporation GP106 [GeForce GTX 1060 6GB] (rev a1)
+```
+
+For linux and the driver requires nouveau to be off:
+
+```sh
+# add nouveau to blacklist and reboot the machine 
+nano /etc/modprobe.d/blacklist.conf
+blacklist nouveau
+
+# after reboot, then give x permission and execute the file
+chmod +x NVIDIA-Linux-x86_64-470.42.01.run
+sudo ./NVIDIA-Linux-x86_64-470.42.01.run
+```
+
+**PLAYERS**
+
+* For video player install VLC using Ubuntu Store
+
+
+### AUDIO
+
+* Install [Spotify](https://www.spotify.com/us/download/linux) with `snap install spotify`
+
+**VIRTUAL SOUND**
+You can use (Virtual sound)[https://askubuntu.com/questions/572120/how-to-use-jack-and-pulseaudio-alsa-at-the-same-time-on-the-same-audio-device] on Ubuntu using 
+[Qjackctl](https://www.youtube.com/watch?v=fOsQr4DuSX0)
+
+```sh
+# Install libs
+sudo apt install jackd2 pulseaudio-module-jack
+
+# list audio devices
+pacmd list-sinks
+# connect jackd
+pacmd load-module module-jack-source channels=2; pacmd load-module module-jack-sink channels=2;
+pactl load-module module-jack-sink channels=2
+pactl load-module module-jack-source 
+```
+
+
+**PLAYERS**
+Using Ubuntu Store install those:
+* Qmmp: player like winamp
+* Rhythmbox: Popular linux player
+
+
+### Misc
+
+Gimp: Manipulate images
+* `brew install gimp`
+
+Office files: Install LibreOffice using Ubuntu Store
+
+Network:
+Test ports used by services like mysql, for instance:
+* telnet localhost 3306
+
+
+**Utils**
+brew install wget
+apt install locate
+
+**Comunication**
+Download [Discord](https://discord.com/download) deb package and install it.
+
+**Virtualization**
+Install VirtualBox using `sudo apt install virtualbox`
+
+
+### STREAM
+
+For Stream we can use [OBS](https://obsproject.com/wiki/install-instructions#supported-builds)
+```sh
+sudo add-apt-repository ppa:obsproject/obs-studio
+sudo apt update
+sudo apt install obs-studio
+```
+
+### Migrate
+
+**Chrome Passwords**
+* Export your password visiting chrome://settings/passwords?search=pass and clicking in ... button , then Export passwords.
+* Import your passwords visiting chrome://flags, search by Password import, enable it and relaunch chrome.
+Go to chrome://settings/passwords?search=pass and on the ... button you have an option to import, so choose the export file and thats it.
+
+**Database Connections**
+* Export: Click on Dbeaver File menu -> Export -> DBeaver Project.
+* Import: Click on  Dbeaver File menu -> Import -> DBeaver Project.
+
+**Database Data**
+* Export: Right click on a database -> Tools -> Dump Database and select all you want to export
+* Import: 
+
+**Export Database Data**
+On Mysql Workbench, right click on a database -> Tools -> Dump Database and select all database you want to export.

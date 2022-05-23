@@ -22,38 +22,39 @@ sudo mysql
 * Changing password
 
 ```sql
+-- Mysql 8
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
+
+-- Mysql < 8
 -- with a custom pass
 ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
 -- with empty pass
 ALTER USER 'root'@'localhost' IDENTIFIED BY '';
 FLUSH PRIVILEGES;
 
--- Mysql < 8
--- Check if column is password or authentication_string: 
-select * from mysql.user where user = 'root';
--- With no password
-UPDATE mysql.user SET authentication_string = '' WHERE User = "root" AND Host = 'localhost';
-
-UPDATE mysql.user SET authentication_string = PASSWORD("123456") WHERE User = "root" AND Host = 'localhost';
-UPDATE mysql.user SET Password = PASSWORD('123456') WHERE User = 'root' AND Host = 'localhost';
+UPDATE mysql.user SET authentication_string = PASSWORD('new_password') WHERE User = 'root' AND Host = 'localhost';
 FLUSH PRIVILEGES;
 
 -- Alternative way
-SET PASSWORD FOR 'root'@'localhost' = PASSWORD('123456');
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('root');
 FLUSH PRIVILEGES;
 
 -- grating previleged
 SELECT host FROM mysql.user WHERE user = "root";
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
+```
 
--- You can set the auth plugin
-update user set plugin="mysql_native_password" where User='root'; 
+# Export
+
+```sh
+mysqldump -h localhost --all-databases > fullback.sql
+mysql -u root -p < fullback.sql
 ```
 
 
-# Migrate
-## Migrate Locale
+
+# Migrate Locale
 
 * Dump the database schema (use your own user + password + database):
 
@@ -72,10 +73,7 @@ Connect to the instance,
 mysql -uadmin -pPASSWORD -hmyhost.com new-utf8
 ```
 
-
-
 ## Migrate One Database
-
 
 Create a new UTF-8 database:
 
@@ -96,12 +94,6 @@ mysql
 use newdb_utf8;
 source dump.newdb.sql;
 source dump.newdb.data.sql;
-```
-## Migrate Databases
-
-```sh
-mysqldump -u root -p --all-databases > dump.sql
-mysql -u root -p < dump.sql
 ```
 
 ### Mysql 5.7 
