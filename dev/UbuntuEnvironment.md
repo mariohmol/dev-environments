@@ -455,9 +455,37 @@ sudo apt install jackd2 pulseaudio-module-jack
 # list audio devices
 pacmd list-sinks
 # connect jackd
-pacmd load-module module-jack-source channels=2; pacmd load-module module-jack-sink channels=2;
 pactl load-module module-jack-sink channels=2
+# pacmd load-module module-jack-source channels=2; 
 pactl load-module module-jack-source 
+
+
+#####
+# ALSA
+#####
+# list all source for recordings
+arecord -L
+
+# test alsa
+alsamixer
+
+# control i/o for every audio source
+sudo apt-get install pavucontrol
+pavucontrol
+
+# if you have a integrated mic, you can find with
+lspci
+
+# if u have an usb mic, find with
+lsusb
+
+# if you mic/phone is working will show here
+cat /proc/asound/cards
+
+# you should see the connection with alsa
+pacmd list-sources
+# brings all the input/outpus
+pacmd list-sources | grep name:
 ```
 
 
@@ -465,6 +493,7 @@ pactl load-module module-jack-source
 Using Ubuntu Store install those:
 * Qmmp: player like winamp
 * Rhythmbox: Popular linux player
+* Audacity: For recording (sudo snap connect audacity:alsa)
 
 
 ### Misc
